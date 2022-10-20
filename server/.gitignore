@@ -3,3 +3,4 @@ node_modules
 api_structure.json
 seeders
 api_structure.jsonc
+ext.config.json
