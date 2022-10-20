@@ -27,4 +27,6 @@ const daySchema = Schema(
 	{ timestamps: true },
 );
 
-module.exports = mongoose.model("Day", daySchema);
+const Day = mongoose.model("Day", daySchema);
+
+module.exports = Day;

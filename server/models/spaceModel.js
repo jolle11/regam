@@ -25,4 +25,6 @@ const spaceSchema = Schema(
 	{ timestamps: true },
 );
 
-module.exports = mongoose.model("Space", spaceSchema);
+const Space = mongoose.model("Space", spaceSchema);
+
+module.exports = Space;
