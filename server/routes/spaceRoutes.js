@@ -14,16 +14,16 @@ const {
 } = require("../controllers/spaceController");
 
 // Show spaces
-router.get("/", getSpaces);
+router.get("/", protect, getSpaces);
 // Show specific space, delete specific space
 router.route("/:id").get(protect, getSpace).delete(protect, deleteSpace);
 // Show space days
-router.get("/:id/days", getDays);
+router.get("/:id/days", protect, getDays);
 // Create new space
-router.post("/create", setSpace);
+router.post("/create", protect, setSpace);
 // Create new day
-router.post("/:id/days/create", setDay);
+router.post("/:id/days/create", protect, setDay);
 // Update day
-router.patch("/:id/days/update", updateDay);
+router.patch("/:id/days/:id/update", protect, updateDay);
 
 module.exports = router;
