@@ -23,8 +23,8 @@ const daySchema = Schema(
 	},
 	{
 		versionKey: false,
+		timestamps: true,
 	},
-	{ timestamps: true },
 );
 
 const Day = mongoose.model("Day", daySchema);

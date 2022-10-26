@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 const spaceSchema = Schema(
 	{
 		user: {
-			type: mongoose.Schema.Types.ObjectId,
+			type: Schema.Types.ObjectId,
 			required: true,
 			ref: "User",
 		},
@@ -12,17 +12,12 @@ const spaceSchema = Schema(
 			type: String,
 			required: true,
 		},
-		days: [
-			{
-				type: Schema.Types.ObjectId,
-				ref: "Day",
-			},
-		],
+		days: [{ type: Schema.Types.ObjectId, ref: "Day" }],
 	},
 	{
 		versionKey: false,
+		timestamps: true,
 	},
-	{ timestamps: true },
 );
 
 const Space = mongoose.model("Space", spaceSchema);
