@@ -15,15 +15,16 @@ const getSpaces = asyncHandler(async (req, res) => {
 });
 
 // @desc    Get space
-// @route   GET /api/spaces/:id
+// @route   GET /api/spaces/:spaceId
 // @access  Private
 const getSpace = asyncHandler(async (req, res) => {
 	console.log("GET SPACE");
-	const space = await Space.findById(req.params.id).populate("days");
+	const space = await Space.findById(req.params.spaceId);
+	space.days = await Day.find({ space: req.params.spaceId });
 	res.status(200).json(space);
 });
 // @desc    Get days
-// @route   GET /api/spaces/:id/days
+// @route   GET /api/spaces/:spaceId/days
 // @access  Private
 const getDays = asyncHandler(async (req, res) => {
 	console.log("GET DAYS");
@@ -48,7 +49,7 @@ const setSpace = asyncHandler(async (req, res) => {
 });
 
 // @desc    Set day
-// @route   GET /api/spaces/:id/days/create
+// @route   GET /api/spaces/:spaceId/days/create
 // @access  Private
 const setDay = asyncHandler(async (req, res) => {
 	console.log("SET DAY");
@@ -57,7 +58,7 @@ const setDay = asyncHandler(async (req, res) => {
 		throw new Error("Please add a date");
 	}
 	const day = await Day.create({
-		space: req.params.id,
+		space: req.params.spaceId,
 		date: req.body.date,
 		water: req.body.water,
 		fertilizer: req.body.fertilizer,
@@ -68,18 +69,58 @@ const setDay = asyncHandler(async (req, res) => {
 });
 
 // @desc    Update day
-// @route   PATCH /api/spaces/:id/days/:id/update
+// @route   PATCH /api/spaces/:spaceId/days/:dayId/update
 // @access  Private
 const updateDay = asyncHandler(async (req, res) => {
 	console.log("UPDATE DAY");
+	const space = await Space.findById(req.params.spaceId);
+	const day = await Day.findOne({
+		spaceId: req.params.spaceId,
+		dayId: req.params.dayId,
+	});
+
+	// Check for user
+	if (!req.user) {
+		res.status(401);
+		throw new Error("User not found");
+	}
+	// Check for space
+	if (!space) {
+		res.status(400);
+		throw new Error("The day may exist but not in this space");
+	}
+	// Check for day inside space
+	if (space && !day) {
+		res.status(400);
+		throw new Error("The space exists but no day was found");
+	}
+
+	// Make sure the logged in user matches the goal user
+	if (space.user.toString() !== req.user.id) {
+		res.status(401);
+		throw new Error("User not authorized");
+	}
+	// Update day
+	const updatedDay = await Day.findOneAndUpdate(
+		{
+			spaceId: req.params.spaceId,
+			dayId: req.params.dayId,
+		},
+		req.body,
+		{
+			new: true,
+		},
+	);
+	console.log(req.body);
+	res.status(200).json(updatedDay);
 });
 
 // @desc    Delete space
-// @route   DELETE /api/spaces/:id
+// @route   DELETE /api/spaces/:spaceId
 // @access  Private
 const deleteSpace = asyncHandler(async (req, res) => {
 	console.log("DELETE SPACE");
-	const space = await Space.findById(req.params.id);
+	const space = await Space.findById(req.params.spaceId);
 	if (!space) {
 		res.status(400);
 		throw new Error("Space not found");
@@ -95,7 +136,7 @@ const deleteSpace = asyncHandler(async (req, res) => {
 		throw new Error("User not authorized");
 	}
 	await space.remove();
-	res.status(200).json({ id: req.params.id });
+	res.status(200).json({ id: req.params.spaceId });
 });
 
 module.exports = {
