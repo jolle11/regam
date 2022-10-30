@@ -12,13 +12,18 @@ const spaceSchema = Schema(
 			type: String,
 			required: true,
 		},
-		days: [{ type: Schema.Types.ObjectId, ref: "Day" }],
 	},
 	{
 		versionKey: false,
 		timestamps: true,
 	},
 );
+
+spaceSchema.virtual("days", {
+	ref: "Day",
+	localField: "_id",
+	foreignField: "space",
+});
 
 const Space = mongoose.model("Space", spaceSchema);
 
