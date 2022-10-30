@@ -5,6 +5,8 @@ const Space = require("../models/spaceModel");
 const Day = require("../models/dayModel");
 const User = require("../models/userModel");
 
+//TODO: add validations
+
 // @desc    Get spaces
 // @route   GET /api/spaces
 // @access  Private
@@ -78,7 +80,6 @@ const updateDay = asyncHandler(async (req, res) => {
 		spaceId: req.params.spaceId,
 		dayId: req.params.dayId,
 	});
-
 	// Check for user
 	if (!req.user) {
 		res.status(401);
@@ -94,8 +95,7 @@ const updateDay = asyncHandler(async (req, res) => {
 		res.status(400);
 		throw new Error("The space exists but no day was found");
 	}
-
-	// Make sure the logged in user matches the goal user
+	// Make sure the logged in user matches the space user
 	if (space.user.toString() !== req.user.id) {
 		res.status(401);
 		throw new Error("User not authorized");
