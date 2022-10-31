@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react';
-import { FaSignInAlt } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+
+import { FaSignInAlt } from 'react-icons/fa';
 import { toast } from 'react-toastify';
+
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { Spinner } from '../../components';
 import { login, reset } from '../../features/auth/authSlice';
+import { Spinner } from '../../components';
+
 import './Login.scss';
 
 interface FormData {

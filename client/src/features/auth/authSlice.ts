@@ -11,7 +11,7 @@ interface InitialState {
 }
 
 // Get user from the localStorage
-const user = JSON.parse(localStorage.getItem('user')); // FIXME: User interface???
+const user: object = JSON.parse(localStorage.getItem('user') as string);
 
 const initialState: InitialState = {
     user: user ? user : null,
@@ -22,8 +22,7 @@ const initialState: InitialState = {
 };
 
 // Register a new user
-export const register = createAsyncThunk('auth/register', async (user: any, thunkAPI) => {
-    // FIXME: user: any
+export const register = createAsyncThunk('auth/register', async (user: object, thunkAPI) => {
     try {
         return await authService.register(user);
     } catch (error: any) {
@@ -36,7 +35,7 @@ export const register = createAsyncThunk('auth/register', async (user: any, thun
 });
 
 // Login user
-export const login = createAsyncThunk('auth/login', async (user: any, thunkAPI) => {
+export const login = createAsyncThunk('auth/login', async (user: object, thunkAPI) => {
     try {
         return await authService.login(user);
     } catch (error: any) {
@@ -73,11 +72,10 @@ export const authSlice = createSlice({
                 state.isSuccess = true;
                 state.user = action.payload;
             })
-            .addCase(register.rejected, (state, action: any) => {
-                // FIXME: action: any
+            .addCase(register.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
-                state.message = action.payload;
+                state.message = action.payload as string;
                 state.user = null;
             })
             .addCase(login.pending, (state) => {
@@ -88,11 +86,10 @@ export const authSlice = createSlice({
                 state.isSuccess = true;
                 state.user = action.payload;
             })
-            .addCase(login.rejected, (state, action: any) => {
-                // FIXME: action: any
+            .addCase(login.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
-                state.message = action.payload;
+                state.message = action.payload as string;
                 state.user = null;
             })
             .addCase(logout.fulfilled, (state) => {

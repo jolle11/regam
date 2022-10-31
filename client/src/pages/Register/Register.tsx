@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import { FaUser } from 'react-icons/fa';
 import { toast } from 'react-toastify';
+
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import './Register.scss';
 import { register, reset } from '../../features/auth/authSlice';
 import { Spinner } from '../../components/';
-import { FaUser } from 'react-icons/fa';
+
+import './Register.scss';
 
 interface FormData {
     name: string;

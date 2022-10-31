@@ -11,7 +11,7 @@ const Header = () => {
     const dispatch = useAppDispatch();
     const { user } = useAppSelector((state) => state.auth);
 
-    const onLogout = () => {
+    const handleLogout = () => {
         dispatch(logout());
         dispatch(reset());
         navigate('/');
@@ -25,7 +25,7 @@ const Header = () => {
             <ul>
                 {user ? (
                     <li>
-                        <button onClick={onLogout}>
+                        <button onClick={handleLogout}>
                             <FaSignOutAlt /> Logout
                         </button>
                     </li>

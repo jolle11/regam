@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
+
 import './Home.scss';
 
 const Home = () => {
