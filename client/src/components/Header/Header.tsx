@@ -5,6 +5,7 @@ import "./Header.scss";
 import { FaSignInAlt, FaSignOutAlt, FaUser } from "react-icons/fa";
 
 import { logout, reset } from "../../features/auth/authSlice";
+import DropdownSpaces from "../DropdownSpaces/DropdownSpaces";
 
 const Header = () => {
 	const navigate = useNavigate();
@@ -21,6 +22,7 @@ const Header = () => {
 		<header>
 			<div>
 				<Link to="/">Rega'm</Link>
+				<DropdownSpaces />
 			</div>
 			<ul>
 				{user ? (
