@@ -35,7 +35,7 @@ const getDays = asyncHandler(async (req, res) => {
 });
 
 // @desc    Set space
-// @route   GET /api/spaces/create
+// @route   POST /api/spaces/create
 // @access  Private
 const setSpace = asyncHandler(async (req, res) => {
 	console.log("SET SPACE");
@@ -51,7 +51,7 @@ const setSpace = asyncHandler(async (req, res) => {
 });
 
 // @desc    Set day
-// @route   GET /api/spaces/:spaceId/days/create
+// @route   POST /api/spaces/:spaceId/days/create
 // @access  Private
 const setDay = asyncHandler(async (req, res) => {
 	console.log("SET DAY");
@@ -69,6 +69,8 @@ const setDay = asyncHandler(async (req, res) => {
 	});
 	res.status(200).json(day);
 });
+
+// TODO: MISSING UPDATE SPACE
 
 // @desc    Update day
 // @route   PATCH /api/spaces/:spaceId/days/:dayId/update
@@ -138,6 +140,8 @@ const deleteSpace = asyncHandler(async (req, res) => {
 	await space.remove();
 	res.status(200).json({ id: req.params.spaceId });
 });
+
+// TODO: MISSING DELETE DAY
 
 module.exports = {
 	getSpaces,

@@ -13,6 +13,10 @@ function App() {
 					<Header />
 					<Routes>
 						<Route path="/" element={<Home />} />
+						{/* TODO: Spaces will come from the dropdown */}
+						{/* <Route path="/spaces" element={<Spaces />} /> */}
+						{/* TODO: Space will be a page */}
+						{/* <Route path="/space/:spaceName" element={<Space />} /> */}
 						<Route path="/login" element={<Login />} />
 						<Route path="/register" element={<Register />} />
 					</Routes>
