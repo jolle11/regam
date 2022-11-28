@@ -9,7 +9,7 @@ const User = require("../models/userModel");
 const registerUser = asyncHandler(async (req, res) => {
 	console.log("REGISTER USER");
 	const { name, email, password } = req.body;
-	if (!name || !email || !password) {
+	if (!(name && email && password)) {
 		res.status(400);
 		throw new Error("Please fill in the fields");
 	}
