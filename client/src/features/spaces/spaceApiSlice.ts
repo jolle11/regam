@@ -54,12 +54,16 @@ export const apiSlice = createApi({
 					body: space,
 				}),
 			}),
-
-			// TODO: MISSING UPDATE SPACE
-
+			updateSpace: builder.mutation({
+				query: ({ space, day }) => ({
+					url: `/${space.id}/update`,
+					method: "PATCH",
+					body: space,
+				}),
+			}),
 			updateDay: builder.mutation({
 				query: ({ space, day }) => ({
-					url: `/${space.id}/days/${day.id}`,
+					url: `/${space.id}/days/${day.id}/update`,
 					method: "PATCH",
 					body: space,
 				}),
@@ -71,7 +75,6 @@ export const apiSlice = createApi({
 					body: id,
 				}),
 			}),
-			// TODO: missing DELETE DAY
 		};
 	},
 });
