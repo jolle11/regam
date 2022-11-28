@@ -9,6 +9,7 @@ const {
 	getDays,
 	setSpace,
 	setDay,
+	updateSpace,
 	updateDay,
 	deleteSpace,
 } = require("../controllers/spaceController");
@@ -23,6 +24,8 @@ router.get("/:spaceId/days", protect, getDays);
 router.post("/create", protect, setSpace);
 // Create new day
 router.post("/:spaceId/days/create", protect, setDay);
+// Update space
+router.patch("/:spaceId/update", protect, updateSpace);
 // Update day
 router.patch("/:spaceId/days/:dayId/update", protect, updateDay);
 

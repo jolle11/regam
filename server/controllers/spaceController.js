@@ -70,7 +70,40 @@ const setDay = asyncHandler(async (req, res) => {
 	res.status(200).json(day);
 });
 
-// TODO: MISSING UPDATE SPACE
+// @desc    Update space
+// @route   PATCH /api/spaces/:spaceId/update
+// @access  Private
+const updateSpace = asyncHandler(async (req, res) => {
+	console.log("UPDATE SPACE");
+	const space = await Space.findById(req.params.spaceId);
+	// Check for user
+	if (!req.user) {
+		res.status(401);
+		throw new Error("User not found");
+	}
+	// Check for space
+	if (!space) {
+		res.status(400);
+		throw new Error("The space doesn't exist");
+	}
+	// Make sure the logged in user matches the space user
+	if (space.user.toString() !== req.user.id) {
+		res.status(401);
+		throw new Error("User not authorized");
+	}
+	// Update day
+	const updatedSpace = await Space.findOneAndUpdate(
+		{
+			spaceId: req.params.spaceId,
+		},
+		req.body,
+		{
+			new: true,
+		},
+	);
+	console.log(req.body);
+	res.status(200).json(updatedSpace);
+});
 
 // @desc    Update day
 // @route   PATCH /api/spaces/:spaceId/days/:dayId/update
@@ -141,8 +174,6 @@ const deleteSpace = asyncHandler(async (req, res) => {
 	res.status(200).json({ id: req.params.spaceId });
 });
 
-// TODO: MISSING DELETE DAY
-
 module.exports = {
 	getSpaces,
 	getSpace,
@@ -150,5 +181,6 @@ module.exports = {
 	setSpace,
 	setDay,
 	updateDay,
+	updateSpace,
 	deleteSpace,
 };
