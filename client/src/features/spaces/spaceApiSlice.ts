@@ -16,10 +16,25 @@ interface Day {
 	comments: string;
 }
 
+interface User {
+	_id: string;
+	name: string;
+	email: string;
+	token: string;
+}
+
 export const apiSlice = createApi({
 	reducerPath: "api",
 	baseQuery: fetchBaseQuery({
 		baseUrl: "http://localhost:5001/api/spaces",
+		prepareHeaders: (headers) => {
+			const user: User = JSON.parse(localStorage.getItem("user") || "{}");
+			console.log(user);
+			if (user) {
+				headers.set("authorization", `Bearer ${user.token}`);
+			}
+			return headers;
+		},
 	}),
 	endpoints(builder) {
 		return {
@@ -55,7 +70,7 @@ export const apiSlice = createApi({
 				}),
 			}),
 			updateSpace: builder.mutation({
-				query: ({ space, day }) => ({
+				query: (space) => ({
 					url: `/${space.id}/update`,
 					method: "PATCH",
 					body: space,
@@ -68,11 +83,11 @@ export const apiSlice = createApi({
 					body: space,
 				}),
 			}),
-			deleteDay: builder.mutation({
-				query: ({ id }) => ({
-					url: `/${id}`,
+			deleteSpace: builder.mutation({
+				query: (space) => ({
+					url: `/${space.id}`,
 					method: "DELETE",
-					body: id,
+					body: space,
 				}),
 			}),
 		};
@@ -86,5 +101,5 @@ export const {
 	useSetSpaceMutation,
 	useSetDayMutation,
 	useUpdateDayMutation,
-	useDeleteDayMutation,
+	useDeleteSpaceMutation,
 } = apiSlice;
