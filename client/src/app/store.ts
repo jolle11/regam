@@ -1,14 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "../features/auth/authSlice";
-import { apiSlice } from "../features/spaces/spaceApiSlice";
+import { spacesApiSlice } from "../features/spaces/spacesApiSlice";
+import { daysApiSlice } from "../features/days/daysApiSlice";
 
 export const store = configureStore({
 	reducer: {
 		auth: authReducer,
-		[apiSlice.reducerPath]: apiSlice.reducer,
+		[spacesApiSlice.reducerPath]: spacesApiSlice.reducer,
+		[daysApiSlice.reducerPath]: daysApiSlice.reducer,
 	},
 	middleware: (getDefaultMiddleware) => {
-		return getDefaultMiddleware().concat(apiSlice.middleware);
+		return getDefaultMiddleware().concat(spacesApiSlice.middleware).concat(daysApiSlice.middleware);
 	},
 });
 
