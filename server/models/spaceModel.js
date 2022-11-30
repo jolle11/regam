@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const toJSON = require("./utils/toJSON");
 const { Schema } = mongoose;
 
 const spaceSchema = Schema(
@@ -19,6 +20,8 @@ const spaceSchema = Schema(
 		timestamps: true,
 	},
 );
+
+toJSON(spaceSchema);
 
 const Space = mongoose.model("Space", spaceSchema);
 

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const toJSON = require("./utils/toJSON");
 const { Schema } = mongoose;
 
 const daySchema = Schema(
@@ -26,6 +27,8 @@ const daySchema = Schema(
 		timestamps: true,
 	},
 );
+
+toJSON(daySchema);
 
 const Day = mongoose.model("Day", daySchema);
 
