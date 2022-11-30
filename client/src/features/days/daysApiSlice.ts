@@ -23,13 +23,12 @@ interface User {
 	token: string;
 }
 
-export const apiSlice = createApi({
-	reducerPath: "api",
+export const daysApiSlice = createApi({
+	reducerPath: "daysApi",
 	baseQuery: fetchBaseQuery({
 		baseUrl: "http://localhost:5001/api/spaces",
 		prepareHeaders: (headers) => {
 			const user: User = JSON.parse(localStorage.getItem("user") || "{}");
-			console.log(user);
 			if (user) {
 				headers.set("authorization", `Bearer ${user.token}`);
 			}
@@ -38,30 +37,13 @@ export const apiSlice = createApi({
 	}),
 	endpoints(builder) {
 		return {
-			fetchSpaces: builder.query({
-				query: () => "/",
-			}),
-			fetchSpace: builder.mutation({
-				query: (space) => ({
-					url: `/${space.id}`,
-					method: "GET",
-					body: space,
-				}),
-			}),
-			fetchDays: builder.mutation({
+			fetchDays: builder.query<Day[], Space>({
 				query: (space) => ({
 					url: `/${space.id}/days`,
 					method: "GET",
-					body: space,
 				}),
 			}),
-			setSpace: builder.mutation({
-				query: (space) => ({
-					url: "/create",
-					method: "POST",
-					body: space,
-				}),
-			}),
+
 			setDay: builder.mutation({
 				query: (space) => ({
 					url: `/${space.id}/days/create`,
@@ -69,13 +51,7 @@ export const apiSlice = createApi({
 					body: space,
 				}),
 			}),
-			updateSpace: builder.mutation({
-				query: (space) => ({
-					url: `/${space.id}/update`,
-					method: "PATCH",
-					body: space,
-				}),
-			}),
+
 			updateDay: builder.mutation({
 				query: ({ space, day }) => ({
 					url: `/${space.id}/days/${day.id}/update`,
@@ -83,23 +59,8 @@ export const apiSlice = createApi({
 					body: space,
 				}),
 			}),
-			deleteSpace: builder.mutation({
-				query: (space) => ({
-					url: `/${space.id}`,
-					method: "DELETE",
-					body: space,
-				}),
-			}),
 		};
 	},
 });
 
-export const {
-	useFetchSpacesQuery,
-	useFetchSpaceMutation,
-	useFetchDaysMutation,
-	useSetSpaceMutation,
-	useSetDayMutation,
-	useUpdateDayMutation,
-	useDeleteSpaceMutation,
-} = apiSlice;
+export const { useFetchDaysQuery, useSetDayMutation, useUpdateDayMutation } = daysApiSlice;
