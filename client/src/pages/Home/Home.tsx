@@ -3,44 +3,28 @@ import { useNavigate } from "react-router-dom";
 
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 
-import {
-	useFetchSpacesQuery,
-	useFetchSpaceMutation,
-	useSetSpaceMutation,
-	useUpdateSpaceMutation,
-	useDeleteSpaceMutation,
-} from "../../features/spaces/spacesApiSlice";
+import { setSpace } from "../../features/spaces/spaceSlice";
+import { setSpaceArray } from "../../features/spaces/spaceArraySlice";
 
-import {
-	useFetchDaysQuery,
-	useSetDayMutation,
-	useUpdateDayMutation,
-} from "../../features/days/daysApiSlice";
+import { useFetchSpacesQuery } from "../../features/spaces/spacesApiSlice";
 
 import "./Home.scss";
 
-interface Space {
-	id: string;
-	name: string;
-	days?: Day[];
-}
-
-interface Day {
-	id: string;
-	space: string;
-	date: string;
-	water: boolean;
-	fertilizer: boolean;
-	transplant: boolean;
-	comments: string;
-}
+import { Day, Space } from "../../ts";
 
 const Home = () => {
 	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
 
 	const { user } = useAppSelector((state) => state.auth);
-	const { data = [], isFetching } = useFetchSpacesQuery([]);
+	const space = useAppSelector((state) => state.space);
+	const spaceArray = useAppSelector((state) => state.spaceArray);
+
+	const { data = [], isFetching, refetch } = useFetchSpacesQuery([]);
+
+	useEffect(() => {
+		dispatch(setSpaceArray(data));
+	}, [data]);
 
 	useEffect(() => {
 		if (!user) {
@@ -54,12 +38,15 @@ const Home = () => {
 				<h1>Benvingut/da {user?.name}</h1>
 				{isFetching && <p>Carregant espais</p>}
 				{!isFetching &&
-					data.map((space: Space) => (
+					spaceArray.map((space: Space) => (
 						<div key={space.id}>
 							<h3>{space.name}</h3>
+							<button onClick={() => dispatch(setSpace(space))}>Set as current space</button>
 						</div>
 					))}
-				{console.log(data)}
+				<p>The space you selected is: {space.name}</p>
+				<button onClick={() => console.log(spaceArray)}>test</button>
+				<button onClick={() => refetch()}>refetch</button>
 				{/* <table>
 					<tbody>
 						<tr>
