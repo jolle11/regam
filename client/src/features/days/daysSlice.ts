@@ -23,5 +23,13 @@ const initialState: Day = {
 const daySlice = createSlice({
 	name: "day",
 	initialState,
-	reducers: {},
+	reducers: {
+		// Set day
+		setDay(state, action: PayloadAction<Day>) {
+			state = action.payload;
+		},
+	},
 });
+
+export const { setDay } = daySlice.actions;
+export default daySlice.reducer;

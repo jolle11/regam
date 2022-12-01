@@ -25,5 +25,15 @@ const initialState: Space = {
 const spaceSlice = createSlice({
 	name: "space",
 	initialState,
-	reducers: {},
+	reducers: {
+		// Set space
+		setSpace(state, action: PayloadAction<Space>) {
+			state.id = action.payload.id;
+			state.name = action.payload.name;
+			state.days = action.payload.days;
+		},
+	},
 });
+
+export const { setSpace } = spaceSlice.actions;
+export default spaceSlice.reducer;
