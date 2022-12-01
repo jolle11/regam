@@ -1,14 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface Day {
-	id: string;
-	space: string;
-	date: string;
-	water: boolean;
-	fertilizer: boolean;
-	transplant: boolean;
-	comments: string;
-}
+import { Day } from "../../ts";
 
 const initialState: Day = {
 	id: "",

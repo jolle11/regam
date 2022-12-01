@@ -1,27 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-interface Space {
-	id: string;
-	name: string;
-	days?: Day[];
-}
-
-interface Day {
-	id: string;
-	space: string;
-	date: string;
-	water: boolean;
-	fertilizer: boolean;
-	transplant: boolean;
-	comments: string;
-}
-
-interface User {
-	_id: string;
-	name: string;
-	email: string;
-	token: string;
-}
+import { Day, Space, User } from "../../ts";
 
 export const daysApiSlice = createApi({
 	reducerPath: "daysApi",
