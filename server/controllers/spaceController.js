@@ -30,7 +30,7 @@ const getSpace = asyncHandler(async (req, res) => {
 // @access  Private
 const getDays = asyncHandler(async (req, res) => {
 	console.log("GET DAYS");
-	const days = await Day.find({ user: req.user.id });
+	const days = await Day.find({ user: req.user.id, space: req.params.spaceId });
 	res.status(200).json(days);
 });
 
