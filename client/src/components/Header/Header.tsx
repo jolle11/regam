@@ -22,7 +22,6 @@ const Header = () => {
 		<header>
 			<div>
 				<Link to="/">Rega'm</Link>
-				<Link to="/space">Space</Link>
 				<DropdownSpaces />
 			</div>
 			<ul>
