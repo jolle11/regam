@@ -17,7 +17,7 @@ export const daysApiSlice = createApi({
 	endpoints(builder) {
 		return {
 			fetchDays: builder.query<Day[], Space>({
-				query: (space) => ({
+				query: (space: Space) => ({
 					url: `/${space.id}/days`,
 					method: "GET",
 				}),
