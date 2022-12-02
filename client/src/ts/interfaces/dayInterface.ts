@@ -5,5 +5,5 @@ export interface Day {
 	water: boolean;
 	fertilizer: boolean;
 	transplant: boolean;
-	comments: string;
+	comment: string;
 }
