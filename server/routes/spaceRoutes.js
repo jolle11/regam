@@ -6,27 +6,32 @@ const { protect } = require("../middleware/authMiddleware");
 const {
 	getSpaces,
 	getSpace,
-	getDays,
 	setSpace,
-	setDay,
 	updateSpace,
-	updateDay,
 	deleteSpace,
+	setDay,
+	getDays,
+	updateDay,
+	deleteDay,
 } = require("../controllers/spaceController");
 
-// Show spaces
+// Get spaces
 router.get("/", protect, getSpaces);
-// Show specific space, delete specific space
-router.route("/:spaceId").get(protect, getSpace).delete(protect, deleteSpace);
-// Show space days
-router.get("/:spaceId/days", protect, getDays);
 // Create new space
 router.post("/create", protect, setSpace);
-// Create new day
-router.post("/:spaceId/days/create", protect, setDay);
+// Get specific space
+router.get("/:spaceId", protect, getSpace);
 // Update space
 router.patch("/:spaceId/update", protect, updateSpace);
+// Delete space
+router.delete("/:spaceId/delete", protect, deleteSpace);
+// Get space days
+router.get("/:spaceId/days", protect, getDays);
+// Create new day
+router.post("/:spaceId/days/create", protect, setDay);
 // Update day
 router.patch("/:spaceId/days/:dayId/update", protect, updateDay);
+// Delete day
+router.delete("/:spaceId/days/:dayId/delete", protect, deleteDay);
 
 module.exports = router;

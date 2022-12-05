@@ -151,11 +151,41 @@ const updateDay = asyncHandler(async (req, res) => {
 });
 
 // @desc    Delete space
-// @route   DELETE /api/spaces/:spaceId
+// @route   DELETE /api/spaces/:spaceId/delete
 // @access  Private
 const deleteSpace = asyncHandler(async (req, res) => {
 	console.log("DELETE SPACE");
 	const space = await Space.findById(req.params.spaceId);
+	// Check for user
+	if (!req.user) {
+		res.status(401);
+		throw new Error("User not found");
+	}
+	// Check for space
+	if (!space) {
+		res.status(400);
+		throw new Error("The day may exist but not in this space");
+	}
+	// Make sure the logged in user matches the space user
+	if (space.user.toString() !== req.user.id) {
+		res.status(401);
+		throw new Error("User not authorized");
+	}
+
+	await space.remove();
+	res.status(200).json({ id: req.params.spaceId });
+});
+
+// @desc    Delete day
+// @route   DELETE /api/spaces/:spaceId/days/:dayId/delete
+// @access  Private
+const deleteDay = asyncHandler(async (req, res) => {
+	console.log("DELETE DAY");
+	const space = await Space.findById(req.params.spaceId);
+	const day = await Day.findOne({
+		spaceId: req.params.spaceId,
+		dayId: req.params.dayId,
+	});
 	if (!space) {
 		res.status(400);
 		throw new Error("Space not found");
@@ -170,17 +200,18 @@ const deleteSpace = asyncHandler(async (req, res) => {
 		res.status(401);
 		throw new Error("User not authorized");
 	}
-	await space.remove();
-	res.status(200).json({ id: req.params.spaceId });
+	await day.remove();
+	res.status(200).json({ id: req.params.dayId });
 });
 
 module.exports = {
 	getSpaces,
 	getSpace,
-	getDays,
 	setSpace,
-	setDay,
-	updateDay,
 	updateSpace,
 	deleteSpace,
+	getDays,
+	setDay,
+	updateDay,
+	deleteDay,
 };
