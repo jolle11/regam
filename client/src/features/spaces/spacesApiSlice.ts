@@ -20,13 +20,13 @@ export const spacesApiSlice = createApi({
 				query: () => "/",
 			}),
 			fetchSpace: builder.mutation({
-				query: (space) => ({
+				query: (space: Space) => ({
 					url: `/${space.id}`,
 					method: "GET",
 				}),
 			}),
 			setSpace: builder.mutation({
-				query: (space) => ({
+				query: (space: string) => ({
 					url: "/create",
 					method: "POST",
 					body: space,
@@ -41,7 +41,7 @@ export const spacesApiSlice = createApi({
 			}),
 			deleteSpace: builder.mutation({
 				query: (space) => ({
-					url: `/${space.id}`,
+					url: `/${space.id}/delete`,
 					method: "DELETE",
 					body: space,
 				}),

@@ -1,3 +1,5 @@
+// TODO: If not used, delete entire file ❗
+
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { Day } from "../../ts";
@@ -9,7 +11,7 @@ const initialState: Day = {
 	water: false,
 	fertilizer: false,
 	transplant: false,
-	comments: "",
+	comment: "",
 };
 
 const daySlice = createSlice({

@@ -24,22 +24,36 @@ export const daysApiSlice = createApi({
 			}),
 
 			setDay: builder.mutation({
-				query: (space) => ({
+				query: (space: Space) => ({
 					url: `/${space.id}/days/create`,
 					method: "POST",
 					body: space,
 				}),
 			}),
 
-			updateDay: builder.mutation({
-				query: ({ space, day }) => ({
-					url: `/${space.id}/days/${day.id}/update`,
+			updateDay: builder.mutation<{}, Day>({
+				query: ({ space, id, water, fertilizer, transplant, comment }) => ({
+					url: `/${space}/days/${id}/update`,
 					method: "PATCH",
-					body: space,
+					body: { water, fertilizer, transplant, comment },
+				}),
+			}),
+
+			deleteDay: builder.mutation<{}, string[]>({
+				query: ([space, id]) => ({
+					url: `/${space}/days/${id}/delete`,
+					method: "DELETE",
+					body: { space, id },
 				}),
 			}),
 		};
 	},
 });
 
-export const { useFetchDaysQuery, useSetDayMutation, useUpdateDayMutation } = daysApiSlice;
+// rome-ignore format: I want them in a pile
+export const {
+	useFetchDaysQuery,
+	useSetDayMutation,
+	useUpdateDayMutation,
+	useDeleteDayMutation
+} = daysApiSlice;
