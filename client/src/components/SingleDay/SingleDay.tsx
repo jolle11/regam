@@ -74,23 +74,13 @@ const SingleDay = ({ id, space, date, water, fertilizer, transplant, comment }: 
 			>
 				Delete
 			</button>
-
-			{/* <button
-				className=""
-				onClick={() => {
-					console.log({ date, water, fertilizer, transplant, updateComment });
-				}}
-			>
-				Show actual values
-			</button> */}
 			<textarea
 				className=""
+				defaultValue={comment}
 				onChange={(e: React.FormEvent<HTMLInputElement>) => {
 					setUpdateComment(e.currentTarget.value);
 				}}
-			>
-				{comment}
-			</textarea>
+			/>
 		</div>
 	);
 };
