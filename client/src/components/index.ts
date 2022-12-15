@@ -1,9 +1,10 @@
-import Header from "./Header/Header";
-import Footer from "./Footer/Footer";
-import Spinner from "./Spinner/Spinner";
-import DropdownSpaces from "./DropdownSpaces/DropdownSpaces";
-import SingleDay from "./SingleDay/SingleDay";
+import CreateDay from "./CreateDay/CreateDay";
 import DaysCounter from "./DaysCounter/DaysCounter";
+import DropdownSpaces from "./DropdownSpaces/DropdownSpaces";
+import Footer from "./Footer/Footer";
+import Header from "./Header/Header";
+import SingleDay from "./SingleDay/SingleDay";
 import SpaceCard from "./SpaceCard/SpaceCard";
+import Spinner from "./Spinner/Spinner";
 
-export { Header, Footer, Spinner, DropdownSpaces, SingleDay, DaysCounter, SpaceCard };
+export { CreateDay, DaysCounter, DropdownSpaces, Footer, Header, SingleDay, SpaceCard, Spinner };
