@@ -14,6 +14,7 @@ export const daysApiSlice = createApi({
 			return headers;
 		},
 	}),
+	tagTypes: ["Days"],
 	endpoints(builder) {
 		return {
 			fetchDays: builder.query<Day[], Space>({
@@ -21,6 +22,7 @@ export const daysApiSlice = createApi({
 					url: `/${space.id}/days`,
 					method: "GET",
 				}),
+				providesTags: ["Days"],
 			}),
 
 			setDay: builder.mutation({
@@ -29,6 +31,7 @@ export const daysApiSlice = createApi({
 					method: "POST",
 					body: space,
 				}),
+				invalidatesTags: ["Days"],
 			}),
 
 			updateDay: builder.mutation<{}, Day>({
@@ -37,6 +40,7 @@ export const daysApiSlice = createApi({
 					method: "PATCH",
 					body: { water, fertilizer, transplant, comment },
 				}),
+				invalidatesTags: ["Days"],
 			}),
 
 			deleteDay: builder.mutation<{}, string[]>({
@@ -45,6 +49,7 @@ export const daysApiSlice = createApi({
 					method: "DELETE",
 					body: { space, id },
 				}),
+				invalidatesTags: ["Days"],
 			}),
 		};
 	},

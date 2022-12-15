@@ -14,16 +14,19 @@ export const spacesApiSlice = createApi({
 			return headers;
 		},
 	}),
+	tagTypes: ["Space", "Spaces"],
 	endpoints(builder) {
 		return {
 			fetchSpaces: builder.query<Space[], object>({
 				query: () => "/",
+				providesTags: ["Spaces"],
 			}),
-			fetchSpace: builder.mutation({
+			fetchSpace: builder.query({
 				query: (space: Space) => ({
 					url: `/${space.id}`,
 					method: "GET",
 				}),
+				providesTags: ["Space"],
 			}),
 			setSpace: builder.mutation({
 				query: (space: string) => ({
@@ -31,6 +34,7 @@ export const spacesApiSlice = createApi({
 					method: "POST",
 					body: space,
 				}),
+				invalidatesTags: ["Spaces"],
 			}),
 			updateSpace: builder.mutation({
 				query: (space) => ({
@@ -38,6 +42,7 @@ export const spacesApiSlice = createApi({
 					method: "PATCH",
 					body: space,
 				}),
+				invalidatesTags: ["Spaces"],
 			}),
 			deleteSpace: builder.mutation({
 				query: (space) => ({
@@ -45,6 +50,7 @@ export const spacesApiSlice = createApi({
 					method: "DELETE",
 					body: space,
 				}),
+				invalidatesTags: ["Spaces"],
 			}),
 		};
 	},
