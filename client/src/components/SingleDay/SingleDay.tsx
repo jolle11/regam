@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 
-import { Day, Space } from "../../ts";
+import { Day } from "../../ts";
 
 import "./SingleDay.scss";
 
-import { useUpdateDayMutation, useDeleteDayMutation } from "../../features/days/daysApiSlice";
+import { useDeleteDayMutation, useUpdateDayMutation } from "../../features/days/daysApiSlice";
 
 const SingleDay = ({ id, space, date, water, fertilizer, transplant, comment }: Day) => {
 	const [handleUpdate] = useUpdateDayMutation();
@@ -44,7 +44,15 @@ const SingleDay = ({ id, space, date, water, fertilizer, transplant, comment }: 
 			</p>
 			<button
 				className=""
-				onClick={() =>
+				disabled={
+					water === updateWater &&
+					fertilizer === updateFertilizer &&
+					transplant === updateTransplant &&
+					comment === updateComment
+						? true
+						: false
+				}
+				onClick={() => {
 					handleUpdate({
 						space,
 						id,
@@ -53,26 +61,36 @@ const SingleDay = ({ id, space, date, water, fertilizer, transplant, comment }: 
 						fertilizer: updateFertilizer,
 						transplant: updateTransplant,
 						comment: updateComment,
-					})
-				}
+					});
+				}}
 			>
 				Update
 			</button>
-			<button className="" onClick={() => handleDelete([space, id])}>
-				Delete
-			</button>
-
 			<button
 				className=""
 				onClick={() => {
-					setUpdateComment(updateComment);
+					handleDelete([space, id]);
+				}}
+			>
+				Delete
+			</button>
+
+			{/* <button
+				className=""
+				onClick={() => {
 					console.log({ date, water, fertilizer, transplant, updateComment });
 				}}
 			>
 				Show actual values
-			</button>
-			{/* TODO: Setup comment updates */}
-			<textarea className="">{updateComment}</textarea>
+			</button> */}
+			<textarea
+				className=""
+				onChange={(e: React.FormEvent<HTMLInputElement>) => {
+					setUpdateComment(e.currentTarget.value);
+				}}
+			>
+				{comment}
+			</textarea>
 		</div>
 	);
 };
