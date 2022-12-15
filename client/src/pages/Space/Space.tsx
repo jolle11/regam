@@ -1,7 +1,4 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { useAppSelector } from "../../app/hooks";
 
 import { DaysCounter, SingleDay } from "../../components";
 
@@ -10,12 +7,9 @@ import { useFetchDaysQuery } from "../../features/days/daysApiSlice";
 import "./Space.scss";
 
 const Space = () => {
-	const navigate = useNavigate();
-	const dispatch = useAppDispatch();
-
 	const space = useAppSelector((state) => state.space);
 
-	const { data = [], isFetching, refetch } = useFetchDaysQuery(space);
+	const { data = [], isFetching } = useFetchDaysQuery(space);
 
 	return (
 		<>
@@ -33,7 +27,6 @@ const Space = () => {
 					</tr>
 				</tbody>
 			</table>
-			{console.log(data)}
 			{!isFetching &&
 				data.map((day) => (
 					<SingleDay
