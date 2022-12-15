@@ -1,6 +1,6 @@
 import { useAppSelector } from "../../app/hooks";
 
-import { DaysCounter, SingleDay } from "../../components";
+import { CreateDay, DaysCounter, SingleDay } from "../../components";
 
 import { useFetchDaysQuery } from "../../features/days/daysApiSlice";
 
@@ -15,6 +15,7 @@ const Space = () => {
 		<>
 			<h1>{space.name}</h1>
 			<DaysCounter />
+			<CreateDay />
 			<table>
 				<tbody>
 					<tr>
@@ -27,19 +28,21 @@ const Space = () => {
 					</tr>
 				</tbody>
 			</table>
-			{!isFetching &&
-				data.map((day) => (
-					<SingleDay
-						key={day.id}
-						id={day.id}
-						space={day.space}
-						date={day.date}
-						water={day.water}
-						fertilizer={day.fertilizer}
-						transplant={day.transplant}
-						comment={day.comment}
-					/>
-				))}
+			<div className="space__days">
+				{!isFetching &&
+					data.map((day) => (
+						<SingleDay
+							key={day.id}
+							id={day.id}
+							space={day.space}
+							date={day.date}
+							water={day.water}
+							fertilizer={day.fertilizer}
+							transplant={day.transplant}
+							comment={day.comment}
+						/>
+					))}
+			</div>
 		</>
 	);
 };
