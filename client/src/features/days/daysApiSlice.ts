@@ -26,10 +26,10 @@ export const daysApiSlice = createApi({
 			}),
 
 			setDay: builder.mutation({
-				query: (space: Space) => ({
-					url: `/${space.id}/days/create`,
+				query: ({ space, date, water, fertilizer, transplant, comment }) => ({
+					url: `/${space}/days/create`,
 					method: "POST",
-					body: space,
+					body: { date, water, fertilizer, transplant, comment },
 				}),
 				invalidatesTags: ["Days"],
 			}),
