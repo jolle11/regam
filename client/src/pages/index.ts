@@ -1,7 +1,6 @@
 import Home from "./Home/Home";
-import Space from "./Space/Space";
-
 import Login from "./Login/Login";
 import Register from "./Register/Register";
+import Space from "./Space/Space";
 
-export { Home, Space, Login, Register };
+export { Home, Login, Register, Space };
