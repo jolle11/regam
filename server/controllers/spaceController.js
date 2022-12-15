@@ -92,16 +92,9 @@ const updateSpace = asyncHandler(async (req, res) => {
 		throw new Error("User not authorized");
 	}
 	// Update day
-	const updatedSpace = await Space.findOneAndUpdate(
-		{
-			spaceId: req.params.spaceId,
-		},
-		req.body,
-		{
-			new: true,
-		},
-	);
-	console.log(req.body);
+	const updatedSpace = await Space.findByIdAndUpdate(req.params.spaceId, req.body, {
+		new: true,
+	});
 	res.status(200).json(updatedSpace);
 });
 
@@ -136,17 +129,9 @@ const updateDay = asyncHandler(async (req, res) => {
 		throw new Error("User not authorized");
 	}
 	// Update day
-	const updatedDay = await Day.findOneAndUpdate(
-		{
-			spaceId: req.params.spaceId,
-			dayId: req.params.dayId,
-		},
-		req.body,
-		{
-			new: true,
-		},
-	);
-	console.log(req.body);
+	const updatedDay = await Day.findByIdAndUpdate(req.params.dayId, req.body, {
+		new: true,
+	});
 	res.status(200).json(updatedDay);
 });
 
@@ -182,10 +167,7 @@ const deleteSpace = asyncHandler(async (req, res) => {
 const deleteDay = asyncHandler(async (req, res) => {
 	console.log("DELETE DAY");
 	const space = await Space.findById(req.params.spaceId);
-	const day = await Day.findOne({
-		spaceId: req.params.spaceId,
-		dayId: req.params.dayId,
-	});
+	const day = await Day.findById(req.params.dayId);
 	if (!space) {
 		res.status(400);
 		throw new Error("Space not found");
