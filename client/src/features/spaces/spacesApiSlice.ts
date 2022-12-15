@@ -58,7 +58,7 @@ export const spacesApiSlice = createApi({
 
 export const {
 	useFetchSpacesQuery,
-	useFetchSpaceMutation,
+	useFetchSpaceQuery,
 	useSetSpaceMutation,
 	useUpdateSpaceMutation,
 	useDeleteSpaceMutation,
