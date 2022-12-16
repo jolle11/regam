@@ -29,14 +29,16 @@ export const spacesApiSlice = createApi({
 				providesTags: ["Space"],
 			}),
 			setSpace: builder.mutation({
-				query: (space: string) => ({
+				// FIXME: add type
+				query: (name) => ({
 					url: "/create",
 					method: "POST",
-					body: space,
+					body: name,
 				}),
 				invalidatesTags: ["Spaces"],
 			}),
 			updateSpace: builder.mutation({
+				// FIXME: add type
 				query: (space) => ({
 					url: `/${space.id}/update`,
 					method: "PATCH",
@@ -45,6 +47,7 @@ export const spacesApiSlice = createApi({
 				invalidatesTags: ["Spaces"],
 			}),
 			deleteSpace: builder.mutation({
+				// FIXME: add type
 				query: (space) => ({
 					url: `/${space.id}/delete`,
 					method: "DELETE",
