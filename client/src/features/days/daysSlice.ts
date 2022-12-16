@@ -1,6 +1,4 @@
-// TODO: If not used, delete entire file ❗
-
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 import { Day } from "../../ts";
 
@@ -18,12 +16,30 @@ const daySlice = createSlice({
 	name: "day",
 	initialState,
 	reducers: {
-		// Set day
-		setDay(state, action: PayloadAction<Day>) {
-			state = action.payload;
+		// 💧
+		setWater(state, action: PayloadAction<boolean>) {
+			state.water = action.payload;
+		},
+		// 🔋
+		setFertilizer(state, action: PayloadAction<boolean>) {
+			state.fertilizer = action.payload;
+		},
+		// 🪴
+		setTransplant(state, action: PayloadAction<boolean>) {
+			state.transplant = action.payload;
+		},
+		// 📝
+		setComment(state, action: PayloadAction<string>) {
+			state.comment = action.payload;
+		},
+		reset(state) {
+			state.water = initialState.water;
+			state.fertilizer = initialState.fertilizer;
+			state.transplant = initialState.transplant;
+			state.comment = initialState.comment;
 		},
 	},
 });
 
-export const { setDay } = daySlice.actions;
+export const { setWater, setFertilizer, setTransplant, setComment, reset } = daySlice.actions;
 export default daySlice.reducer;
