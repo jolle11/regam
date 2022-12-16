@@ -1,10 +1,10 @@
-import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "../features/auth/authSlice";
-import spaceReducer from "../features/spaces/spaceSlice";
-import spaceArrayReducer from "../features/spaces/spaceArraySlice";
-import dayReducer from "../features/days/daysSlice";
-import { spacesApiSlice } from "../features/spaces/spacesApiSlice";
 import { daysApiSlice } from "../features/days/daysApiSlice";
+import dayReducer from "../features/days/daysSlice";
+import spaceArrayReducer from "../features/spaces/spaceArraySlice";
+import spaceReducer from "../features/spaces/spaceSlice";
+import { spacesApiSlice } from "../features/spaces/spacesApiSlice";
+import { configureStore } from "@reduxjs/toolkit";
 
 export const store = configureStore({
 	reducer: {
