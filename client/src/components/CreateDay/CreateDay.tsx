@@ -1,41 +1,50 @@
-import { useAppSelector } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { useSetDayMutation } from "../../features/days/daysApiSlice";
+import {
+	reset,
+	setComment,
+	setFertilizer,
+	setTransplant,
+	setWater,
+} from "../../features/days/daysSlice";
 import "./Createday.scss";
 import moment from "moment";
-import { useState } from "react";
+import { FormEvent } from "react";
 
 const CreateDay = () => {
+	const dispatch = useAppDispatch();
+
 	const space = useAppSelector((state) => state.space.id);
+	const day = useAppSelector((state) => state.day);
 
 	const [handleCreate] = useSetDayMutation();
 
-	const [water, setWater] = useState<boolean>(false);
-	const [fertilizer, setFertilizer] = useState<boolean>(false);
-	const [transplant, setTransplant] = useState<boolean>(false);
-	const [comment, setComment] = useState<string>();
-
 	return (
-		<div className="day">
+		<form className="day">
+			<p>Avui</p>
+			{/* rome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
 			<p
-				className={`${water === false ? "greyScale" : ""}`}
+				className={`${day.water === false ? "greyScale" : ""}`}
 				onClick={() => {
-					setWater(!water);
+					dispatch(setWater(!day.water));
 				}}
 			>
 				💧
 			</p>
+			{/* rome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
 			<p
-				className={`${fertilizer === false ? "greyScale" : ""}`}
+				className={`${day.fertilizer === false ? "greyScale" : ""}`}
 				onClick={() => {
-					setFertilizer(!fertilizer);
+					dispatch(setFertilizer(!day.fertilizer));
 				}}
 			>
 				🔋
 			</p>
+			{/* rome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
 			<p
-				className={`${transplant === false ? "greyScale" : ""}`}
+				className={`${day.transplant === false ? "greyScale" : ""}`}
 				onClick={() => {
-					setTransplant(!transplant);
+					dispatch(setTransplant(!day.transplant));
 				}}
 			>
 				🪴
@@ -43,26 +52,30 @@ const CreateDay = () => {
 
 			<textarea
 				className=""
-				onChange={(e: React.FormEvent<HTMLInputElement>) => {
-					setComment(e.currentTarget.value);
-				}}
+				value={day.comment}
+				onChange={(e: React.FormEvent<HTMLInputElement>) =>
+					dispatch(setComment(e.currentTarget.value || ""))
+				}
 			/>
+
 			<button
 				className=""
-				onClick={() => {
+				onClick={(e: FormEvent) => {
+					e.preventDefault();
 					handleCreate({
 						space,
 						date: moment().format("DD/MM/YYYY"),
-						water,
-						fertilizer,
-						transplant,
-						comment,
+						water: day.water,
+						fertilizer: day.fertilizer,
+						transplant: day.transplant,
+						comment: day.comment,
 					});
+					dispatch(reset());
 				}}
 			>
 				Afegir
 			</button>
-		</div>
+		</form>
 	);
 };
 
