@@ -1,4 +1,5 @@
 import CreateDay from "./CreateDay/CreateDay";
+import CreateSpace from "./CreateSpace/CreateSpace";
 import DaysCounter from "./DaysCounter/DaysCounter";
 import DropdownSpaces from "./DropdownSpaces/DropdownSpaces";
 import Footer from "./Footer/Footer";
@@ -7,4 +8,14 @@ import SingleDay from "./SingleDay/SingleDay";
 import SpaceCard from "./SpaceCard/SpaceCard";
 import Spinner from "./Spinner/Spinner";
 
-export { CreateDay, DaysCounter, DropdownSpaces, Footer, Header, SingleDay, SpaceCard, Spinner };
+export {
+	CreateDay,
+	CreateSpace,
+	DaysCounter,
+	DropdownSpaces,
+	Footer,
+	Header,
+	SingleDay,
+	SpaceCard,
+	Spinner,
+};
