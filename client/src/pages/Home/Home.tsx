@@ -1,7 +1,6 @@
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { CreateSpace } from "../../components";
+import { CreateSpace, SpaceCard, Spinner } from "../../components";
 import { setSpaceArray } from "../../features/spaces/spaceArraySlice";
-import { setSpace } from "../../features/spaces/spaceSlice";
 import { useFetchSpacesQuery } from "../../features/spaces/spacesApiSlice";
 import { Space } from "../../ts";
 import "./Home.scss";
@@ -18,6 +17,7 @@ const Home = () => {
 
 	const { data = [], isFetching } = useFetchSpacesQuery([]);
 
+	// To avoid infinite renderings we do this 👇
 	useEffect(() => {
 		dispatch(setSpaceArray(data));
 	}, [data]);
@@ -32,14 +32,8 @@ const Home = () => {
 		<>
 			<section>
 				<h1>Benvingut/da {user?.name}</h1>
-				{isFetching && <p>Carregant espais</p>}
-				{!isFetching &&
-					spaceArray.map((space: Space) => (
-						<div key={space.id}>
-							<h3>{space.name}</h3>
-							<button onClick={() => dispatch(setSpace(space))}>Set as current space</button>
-						</div>
-					))}
+				{isFetching && <Spinner />}
+				{!isFetching && spaceArray.map((space: Space) => <SpaceCard {...space} />)}
 				<CreateSpace />
 				<p>The space you selected is: {space.name}</p>
 			</section>
