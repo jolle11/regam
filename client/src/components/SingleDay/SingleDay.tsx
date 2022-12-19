@@ -1,14 +1,13 @@
+import { useDeleteDayMutation, useUpdateDayMutation } from "../../features/days/daysApiSlice";
+import { Day } from "../../ts";
+import "./SingleDay.scss";
 import React, { FormEvent, useState } from "react";
 
-import { Day } from "../../ts";
-
-import "./SingleDay.scss";
-
-import { useDeleteDayMutation, useUpdateDayMutation } from "../../features/days/daysApiSlice";
-
-const SingleDay = ({ id, space, date, water, fertilizer, transplant, comment }: Day) => {
+const SingleDay = (day: Day) => {
 	const [handleUpdate] = useUpdateDayMutation();
 	const [handleDelete] = useDeleteDayMutation();
+
+	const { space, id, date, water, fertilizer, transplant, comment } = day;
 
 	const [updateWater, setUpdateWater] = useState<boolean>(water);
 	const [updateFertilizer, setUpdateFertilizer] = useState<boolean>(fertilizer);

@@ -15,7 +15,7 @@ const CreateDay = () => {
 	const dispatch = useAppDispatch();
 
 	const space = useAppSelector((state) => state.space.id);
-	const day = useAppSelector((state) => state.day);
+	const { water, fertilizer, transplant, comment } = useAppSelector((state) => state.day);
 
 	const [handleCreate] = useSetDayMutation();
 
@@ -24,27 +24,27 @@ const CreateDay = () => {
 			<p>Avui</p>
 			{/* rome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
 			<p
-				className={`${day.water === false ? "greyScale" : ""}`}
+				className={`${water === false ? "greyScale" : ""}`}
 				onClick={() => {
-					dispatch(setWater(!day.water));
+					dispatch(setWater(!water));
 				}}
 			>
 				💧
 			</p>
 			{/* rome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
 			<p
-				className={`${day.fertilizer === false ? "greyScale" : ""}`}
+				className={`${fertilizer === false ? "greyScale" : ""}`}
 				onClick={() => {
-					dispatch(setFertilizer(!day.fertilizer));
+					dispatch(setFertilizer(!fertilizer));
 				}}
 			>
 				🔋
 			</p>
 			{/* rome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
 			<p
-				className={`${day.transplant === false ? "greyScale" : ""}`}
+				className={`${transplant === false ? "greyScale" : ""}`}
 				onClick={() => {
-					dispatch(setTransplant(!day.transplant));
+					dispatch(setTransplant(!transplant));
 				}}
 			>
 				🪴
@@ -52,7 +52,7 @@ const CreateDay = () => {
 
 			<textarea
 				className=""
-				value={day.comment}
+				value={comment}
 				onChange={(e: React.FormEvent<HTMLInputElement>) =>
 					dispatch(setComment(e.currentTarget.value || ""))
 				}
@@ -65,10 +65,10 @@ const CreateDay = () => {
 					handleCreate({
 						space,
 						date: moment().format("DD/MM/YYYY"),
-						water: day.water,
-						fertilizer: day.fertilizer,
-						transplant: day.transplant,
-						comment: day.comment,
+						water,
+						fertilizer,
+						transplant,
+						comment,
 					});
 					dispatch(reset());
 				}}
