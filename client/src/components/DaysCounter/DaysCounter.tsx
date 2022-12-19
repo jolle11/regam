@@ -1,5 +1,3 @@
-import React from "react";
-
 import "./DaysCounter.scss";
 
 const DaysCounter = () => {
