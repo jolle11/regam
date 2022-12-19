@@ -13,35 +13,14 @@ const Space = () => {
 
 	return (
 		<>
+			{/*TODO: Make title editable onclick*/}
+			{/*TODO: Autoupdate when click outside || show update button*/}
 			<h1>{space.name}</h1>
-			<DaysCounter />
+			{/*TODO: Figure out how to count the days inside the counter*/}
+			{/* <DaysCounter /> */}
 			<CreateDay />
-			<table>
-				<tbody>
-					<tr>
-						<th>Dia</th>
-						<th>R</th>
-						<th>F</th>
-						<th>T</th>
-						<th>Accions</th>
-						<th>Comentaris</th>
-					</tr>
-				</tbody>
-			</table>
 			<div className="space__days">
-				{!isFetching &&
-					data.map((day) => (
-						<SingleDay
-							key={day.id}
-							id={day.id}
-							space={day.space}
-							date={day.date}
-							water={day.water}
-							fertilizer={day.fertilizer}
-							transplant={day.transplant}
-							comment={day.comment}
-						/>
-					))}
+				{!isFetching && data.map((day) => <SingleDay key={day.id} {...day} />)}
 			</div>
 		</>
 	);
