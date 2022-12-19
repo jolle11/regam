@@ -1,11 +1,9 @@
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { useNavigate, Link } from "react-router-dom";
-import "./Header.scss";
-
-import { FaSignInAlt, FaSignOutAlt, FaUser } from "react-icons/fa";
-
 import { logout, reset } from "../../features/auth/authSlice";
 import DropdownSpaces from "../DropdownSpaces/DropdownSpaces";
+import "./Header.scss";
+import { FaSignInAlt, FaSignOutAlt, FaUser } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
 	const navigate = useNavigate();
