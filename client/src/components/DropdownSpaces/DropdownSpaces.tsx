@@ -1,11 +1,9 @@
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { setSpace } from "../../features/spaces/spaceSlice";
+import { Space } from "../../ts";
+import CreateSpace from "../CreateSpace/CreateSpace";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-
-import { setSpace } from "../../features/spaces/spaceSlice";
-
-import { Space } from "../../ts";
 
 const DropdownSpaces = () => {
 	const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -28,7 +26,7 @@ const DropdownSpaces = () => {
 			<button onClick={handleDropdown}>Spaces</button>
 			{isOpen && (
 				<>
-					<button>New Space</button>
+					<CreateSpace />
 					<ul>
 						{spaceArray.map((space: Space) => (
 							<li key={space.id} onClick={() => handleSpaceSwitch(space)}>
