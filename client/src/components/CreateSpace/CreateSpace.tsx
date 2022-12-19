@@ -15,7 +15,14 @@ const CreateSpace = () => {
 					setNewSpace(e.currentTarget.value || "")
 				}
 			/>
-			<button onClick={() => handleCreate({ name: newSpace })}>Crear</button>
+			<button
+				onClick={() => {
+					handleCreate({ name: newSpace });
+					setNewSpace("");
+				}}
+			>
+				Crear
+			</button>
 		</div>
 	);
 };
