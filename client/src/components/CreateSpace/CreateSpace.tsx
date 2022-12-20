@@ -1,29 +1,43 @@
 import { useSetSpaceMutation } from "../../features/spaces/spacesApiSlice";
 import "./CreateSpace.scss";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 
 const CreateSpace = () => {
 	const [handleCreate] = useSetSpaceMutation();
+
 	const [newSpace, setNewSpace] = useState<string>("");
+	const [toggleCreateNewSpace, setToggleCreateNewSpace] = useState<boolean>(false);
 
 	return (
-		<div>
-			<p>Nou espai</p>
-			<input
-				type="text"
-				onChange={(e: React.FormEvent<HTMLInputElement>) =>
-					setNewSpace(e.currentTarget.value || "")
-				}
-			/>
+		<form>
 			<button
-				onClick={() => {
-					handleCreate({ name: newSpace });
-					setNewSpace("");
+				onClick={(e: FormEvent) => {
+					e.preventDefault();
+					setToggleCreateNewSpace(!toggleCreateNewSpace);
 				}}
 			>
-				Crear
+				{toggleCreateNewSpace ? "Cancellar" : "Crear nou espai"}
 			</button>
-		</div>
+			{toggleCreateNewSpace && (
+				<>
+					<input
+						type="text"
+						onChange={(e: React.FormEvent<HTMLInputElement>) =>
+							setNewSpace(e.currentTarget.value || "")
+						}
+					/>
+					<button
+						onClick={(e: FormEvent) => {
+							e.preventDefault();
+							handleCreate({ name: newSpace });
+							setToggleCreateNewSpace(false);
+						}}
+					>
+						Crear
+					</button>
+				</>
+			)}
+		</form>
 	);
 };
 
