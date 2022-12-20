@@ -33,7 +33,7 @@ const Home = () => {
 			<section>
 				<h1>Benvingut/da {user?.name}</h1>
 				{isFetching && <Spinner />}
-				{!isFetching && spaceArray.map((space: Space) => <SpaceCard {...space} />)}
+				{!isFetching && spaceArray.map((space: Space) => <SpaceCard key={space.id} {...space} />)}
 				<CreateSpace />
 				<p>The space you selected is: {space.name}</p>
 			</section>
