@@ -63,7 +63,7 @@ const SingleDay = (day: Day) => {
 					});
 				}}
 			>
-				Update
+				Actualitza
 			</button>
 			<button
 				className=""
@@ -71,7 +71,7 @@ const SingleDay = (day: Day) => {
 					handleDelete([space, id]);
 				}}
 			>
-				Delete
+				Esborra
 			</button>
 			<textarea
 				className=""
