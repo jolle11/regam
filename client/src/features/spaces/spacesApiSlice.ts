@@ -45,11 +45,10 @@ export const spacesApiSlice = createApi({
 				invalidatesTags: ["Space", "Spaces"],
 			}),
 			deleteSpace: builder.mutation({
-				// FIXME: add type
-				query: (space) => ({
-					url: `/${space.id}/delete`,
+				query: (id: string) => ({
+					url: `/${id}/delete`,
 					method: "DELETE",
-					body: space,
+					body: id,
 				}),
 				invalidatesTags: ["Spaces"],
 			}),
