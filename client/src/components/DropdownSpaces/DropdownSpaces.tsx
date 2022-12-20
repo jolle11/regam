@@ -24,7 +24,7 @@ const DropdownSpaces = () => {
 
 	return (
 		<div>
-			<button onClick={handleDropdown}>Spaces</button>
+			<button onClick={handleDropdown}>Espais</button>
 			{isOpen && (
 				<>
 					<CreateSpace />
