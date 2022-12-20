@@ -18,6 +18,7 @@ const DropdownSpaces = () => {
 
 	const handleSpaceSwitch = (space: Space) => {
 		dispatch(setSpace(space));
+		setIsOpen(false);
 		navigate(`/space/${space.name}`);
 	};
 
