@@ -1,14 +1,11 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-
-import { FaSignInAlt } from "react-icons/fa";
-import { toast } from "react-toastify";
-
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { login, reset } from "../../features/auth/authSlice";
 import { Spinner } from "../../components";
-
+import { login, reset } from "../../features/auth/authSlice";
 import "./Login.scss";
+import { useEffect, useState } from "react";
+import { FaSignInAlt } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 interface FormData {
 	email: string;
@@ -26,9 +23,7 @@ const Login = () => {
 
 	const { email, password } = formData;
 
-	const { user, isLoading, isError, isSuccess, message } = useAppSelector(
-		(state) => state.auth,
-	);
+	const { user, isLoading, isError, isSuccess, message } = useAppSelector((state) => state.auth);
 
 	useEffect(() => {
 		if (isError) {
@@ -67,7 +62,7 @@ const Login = () => {
 				<h1>
 					<FaSignInAlt /> Login
 				</h1>
-				<p>Login keep track of your plants</p>
+				<p>Introdueix el teu correu i controla els teus racons verds</p>
 			</section>
 			<section className="form">
 				<form onSubmit={handleSubmit}>
@@ -78,7 +73,7 @@ const Login = () => {
 							id="email"
 							name="email"
 							value={email}
-							placeholder="Enter your email"
+							placeholder="Introdueix el teu correu"
 							onChange={handleChange}
 						/>
 					</div>
@@ -89,7 +84,7 @@ const Login = () => {
 							id="password"
 							name="password"
 							value={password}
-							placeholder="Enter your password"
+							placeholder="Introdueix el teu password"
 							onChange={handleChange}
 						/>
 					</div>

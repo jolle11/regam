@@ -1,14 +1,11 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-
-import { FaUser } from "react-icons/fa";
-import { toast } from "react-toastify";
-
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { register, reset } from "../../features/auth/authSlice";
 import { Spinner } from "../../components/";
-
+import { register, reset } from "../../features/auth/authSlice";
 import "./Register.scss";
+import { useEffect, useState } from "react";
+import { FaUser } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 interface FormData {
 	name: string;
@@ -30,9 +27,7 @@ const Register = () => {
 
 	const { name, email, password, verifyPassword } = formData;
 
-	const { user, isLoading, isError, isSuccess, message } = useAppSelector(
-		(state) => state.auth,
-	);
+	const { user, isLoading, isError, isSuccess, message } = useAppSelector((state) => state.auth);
 
 	useEffect(() => {
 		if (isError) {
@@ -88,7 +83,7 @@ const Register = () => {
 							id="name"
 							name="name"
 							value={name}
-							placeholder="Enter your name"
+							placeholder="Introdueix el teu nom"
 							onChange={handleChange}
 						/>
 					</div>
@@ -99,7 +94,7 @@ const Register = () => {
 							id="email"
 							name="email"
 							value={email}
-							placeholder="Enter your email"
+							placeholder="Introdueix el teu correu"
 							onChange={handleChange}
 						/>
 					</div>
@@ -110,7 +105,7 @@ const Register = () => {
 							id="password"
 							name="password"
 							value={password}
-							placeholder="Enter your password"
+							placeholder="Crea el teu password"
 							onChange={handleChange}
 						/>
 					</div>
@@ -121,7 +116,7 @@ const Register = () => {
 							id="verifyPassword"
 							name="verifyPassword"
 							value={verifyPassword}
-							placeholder="Confirm password"
+							placeholder="Confirma el teu password"
 							onChange={handleChange}
 						/>
 					</div>
