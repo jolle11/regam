@@ -17,33 +17,34 @@ const Header = () => {
 	};
 
 	return (
-		<header>
-			<div>
-				<Link to="/">Rega'm</Link>
-				<DropdownSpaces />
-			</div>
-			<ul>
-				{user ? (
-					<li>
-						<button onClick={handleLogout}>
-							<FaSignOutAlt /> Logout
+		<header className="header">
+			<Link to="/" className="header__title">
+				Rega'm
+			</Link>
+			{user && <DropdownSpaces />}
+			{user && (
+				<ul className="header__list">
+					<li className="header__item">
+						<button onClick={handleLogout} className="header__button">
+							<FaSignOutAlt /> Tancar sessió
 						</button>
 					</li>
-				) : (
-					<>
-						<li>
-							<Link to="/login">
-								<FaSignInAlt /> Login
-							</Link>
-						</li>
-						<li>
-							<Link to="/register">
-								<FaUser /> Register
-							</Link>
-						</li>
-					</>
-				)}
-			</ul>
+				</ul>
+			)}
+			{!user && (
+				<ul className="header__list">
+					<li className="header__item">
+						<Link to="/login" className="header__button">
+							<FaSignInAlt /> Inicia sessió
+						</Link>
+					</li>
+					<li className="header__item">
+						<Link to="/register" className="header__button">
+							<FaUser /> Registra't
+						</Link>
+					</li>
+				</ul>
+			)}
 		</header>
 	);
 };
