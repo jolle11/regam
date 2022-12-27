@@ -25,6 +25,7 @@ const Space = () => {
 		}
 	});
 
+	// To reset on creation or update 👇
 	useEffect(() => {
 		setLastWater([]);
 		setLastFertilizer([]);
@@ -36,15 +37,6 @@ const Space = () => {
 			<div>
 				<h1>{space.name}</h1>
 			</div>
-			{/* {data.map((day) => {
-				if (day.water === true) {
-					lastWater.push(day.date);
-				} else if (day.fertilizer === true) {
-					lastFertilizer.push(day.date);
-				} else if (day.transplant === true) {
-					lastTransplant.push(day.date);
-				}
-			})} */}
 			<DaysCounter
 				water={lastWater.slice(-1).toString()}
 				fertilizer={lastFertilizer.slice(-1).toString()}

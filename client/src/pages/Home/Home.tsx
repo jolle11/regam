@@ -12,7 +12,6 @@ const Home = () => {
 	const dispatch = useAppDispatch();
 
 	const { user } = useAppSelector((state) => state.auth);
-	const space = useAppSelector((state) => state.space);
 	const spaceArray = useAppSelector((state) => state.spaceArray);
 
 	const { data = [], isFetching } = useFetchSpacesQuery([]);
@@ -35,7 +34,6 @@ const Home = () => {
 				{isFetching && <Spinner />}
 				{!isFetching && spaceArray.map((space: Space) => <SpaceCard key={space.id} {...space} />)}
 				<CreateSpace />
-				<p>The space you selected is: {space.name}</p>
 			</section>
 		</>
 	);
