@@ -7,7 +7,7 @@ import {
 	setTransplant,
 	setWater,
 } from "../../features/days/daysSlice";
-import "./Createday.scss";
+import "./CreateDay.scss";
 import moment from "moment";
 import { FormEvent } from "react";
 
@@ -20,46 +20,49 @@ const CreateDay = () => {
 	const [handleCreate] = useSetDayMutation();
 
 	return (
-		<form className="day">
-			<p>Avui</p>
-			{/* rome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
-			<p
-				className={`${water === false ? "greyScale" : ""}`}
-				onClick={() => {
-					dispatch(setWater(!water));
-				}}
-			>
-				💧
-			</p>
-			{/* rome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
-			<p
-				className={`${fertilizer === false ? "greyScale" : ""}`}
-				onClick={() => {
-					dispatch(setFertilizer(!fertilizer));
-				}}
-			>
-				🔋
-			</p>
-			{/* rome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
-			<p
-				className={`${transplant === false ? "greyScale" : ""}`}
-				onClick={() => {
-					dispatch(setTransplant(!transplant));
-				}}
-			>
-				🪴
-			</p>
+		<form className="createday">
+			<p className="createday__today">Avui</p>
+			<div className="createday__icons">
+				{/* rome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
+				<p
+					className={`createday__icon ${water === false ? "createday__icon--greyScale" : ""}`}
+					onClick={() => {
+						dispatch(setWater(!water));
+					}}
+				>
+					💧
+				</p>
+				{/* rome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
+				<p
+					className={`createday__icon ${fertilizer === false ? "createday__icon--greyScale" : ""}`}
+					onClick={() => {
+						dispatch(setFertilizer(!fertilizer));
+					}}
+				>
+					🔋
+				</p>
+				{/* rome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
+				<p
+					className={`createday__icon ${transplant === false ? "createday__icon--greyScale" : ""}`}
+					onClick={() => {
+						dispatch(setTransplant(!transplant));
+					}}
+				>
+					🪴
+				</p>
+			</div>
 
 			<textarea
-				className=""
+				className="createday__comment"
 				value={comment}
+				placeholder='Escriu el teu comentari'
 				onChange={(e: React.FormEvent<HTMLInputElement>) =>
 					dispatch(setComment(e.currentTarget.value || ""))
 				}
 			/>
 
 			<button
-				className=""
+				className="createday__button"
 				onClick={(e: FormEvent) => {
 					e.preventDefault();
 					handleCreate({

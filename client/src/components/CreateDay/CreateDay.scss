@@ -1,3 +1,33 @@
-.greyScale {
-	filter: grayscale(1);
+.createday {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background: red;
+
+	@media (min-width: 320px) {}
+
+	@media(min-width: 768px) {}
+
+	@media (min-width: 1200px) {}
+
+	&__today {
+		font-size: 30px;
+	}
+
+	&__icons {
+		display: flex;
+		flex-direction: row;
+	}
+
+	&__icon {
+		font-size: 24px;
+
+		&--greyScale {
+			filter: grayscale(1);
+		}
+	}
+
+	&__comment {}
+
+	&__button {}
 }

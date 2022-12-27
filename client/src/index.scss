@@ -1,0 +1,16 @@
+html {
+	box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
+	margin: 0;
+	padding: 0;
+}
+
+.container {
+	background-color: rgb(160, 255, 146);
+	min-height: 80vh;
+}

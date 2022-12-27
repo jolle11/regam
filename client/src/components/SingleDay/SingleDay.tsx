@@ -15,7 +15,7 @@ const SingleDay = (day: Day) => {
 	const [updateComment, setUpdateComment] = useState<string>(comment);
 
 	return (
-		<div className="day">
+		<div className="singleday">
 			<p className="">{date}</p>
 			<p
 				className={`${updateWater === false ? "greyScale" : ""}`}
