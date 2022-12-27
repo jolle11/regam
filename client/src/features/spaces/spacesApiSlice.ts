@@ -34,7 +34,7 @@ export const spacesApiSlice = createApi({
 					method: "POST",
 					body: name,
 				}),
-				invalidatesTags: ["Spaces"],
+				invalidatesTags: ["Space", "Spaces"],
 			}),
 			updateSpace: builder.mutation({
 				query: (space: Space) => ({
