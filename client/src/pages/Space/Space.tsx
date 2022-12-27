@@ -16,9 +16,11 @@ const Space = () => {
 	data.map((day) => {
 		if (day.water === true) {
 			lastWater.push(day.date);
-		} else if (day.fertilizer === true) {
+		}
+		if (day.fertilizer === true) {
 			lastFertilizer.push(day.date);
-		} else if (day.transplant === true) {
+		}
+		if (day.transplant === true) {
 			lastTransplant.push(day.date);
 		}
 	});
