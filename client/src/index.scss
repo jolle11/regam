@@ -1,3 +1,5 @@
+@import './styles/colors';
+
 html {
 	box-sizing: border-box;
 }
@@ -11,6 +13,6 @@ html {
 }
 
 .container {
-	background-color: rgb(160, 255, 146);
+	background: $lightergreen;
 	min-height: 80vh;
 }

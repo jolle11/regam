@@ -1,4 +1,10 @@
-.space__days {
-	display: flex;
-	flex-direction: column-reverse;
+.space {
+	&__title {}
+
+	&__name {}
+
+	&__days {
+		display: flex;
+		flex-direction: column-reverse;
+	}
 }

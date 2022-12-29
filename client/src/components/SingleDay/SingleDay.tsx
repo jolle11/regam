@@ -16,9 +16,9 @@ const SingleDay = (day: Day) => {
 
 	return (
 		<div className="singleday">
-			<p className="">{date}</p>
+			<p className="singleday__date">{date}</p>
 			<p
-				className={`${updateWater === false ? "greyScale" : ""}`}
+				className={`singleday__icon ${updateWater === false ? "singleday__icon--greyScale" : ""}`}
 				onClick={() => {
 					setUpdateWater(!updateWater);
 				}}
@@ -26,7 +26,9 @@ const SingleDay = (day: Day) => {
 				💧
 			</p>
 			<p
-				className={`${updateFertilizer === false ? "greyScale" : ""}`}
+				className={`singleday__icon ${
+					updateFertilizer === false ? "singleday__icon--greyScale" : ""
+				}`}
 				onClick={() => {
 					setUpdateFertilizer(!updateFertilizer);
 				}}
@@ -34,7 +36,9 @@ const SingleDay = (day: Day) => {
 				🔋
 			</p>
 			<p
-				className={`${updateTransplant === false ? "greyScale" : ""}`}
+				className={`singleday__icon ${
+					updateTransplant === false ? "singleday__icon--greyScale" : ""
+				}`}
 				onClick={() => {
 					setUpdateTransplant(!updateTransplant);
 				}}
@@ -42,7 +46,7 @@ const SingleDay = (day: Day) => {
 				🪴
 			</p>
 			<button
-				className=""
+				className="singleday__button"
 				disabled={
 					water === updateWater &&
 					fertilizer === updateFertilizer &&
@@ -66,15 +70,15 @@ const SingleDay = (day: Day) => {
 				Actualitza
 			</button>
 			<button
-				className=""
+				className="singleday__button"
 				onClick={() => {
 					handleDelete([space, id]);
 				}}
 			>
-				Esborra
+				🗑️
 			</button>
 			<textarea
-				className=""
+				className="singleday__textarea"
 				defaultValue={comment}
 				onChange={(e: React.FormEvent<HTMLInputElement>) => {
 					setUpdateComment(e.currentTarget.value);

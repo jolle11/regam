@@ -9,24 +9,27 @@ const CreateSpace = () => {
 	const [toggleCreateNewSpace, setToggleCreateNewSpace] = useState<boolean>(false);
 
 	return (
-		<form>
+		<form className="createspace">
 			<button
+				className="createspace__button"
 				onClick={(e: FormEvent) => {
 					e.preventDefault();
 					setToggleCreateNewSpace(!toggleCreateNewSpace);
 				}}
 			>
-				{toggleCreateNewSpace ? "Cancellar" : "Crear nou espai"}
+				{toggleCreateNewSpace ? "Cancellar" : "Nou espai"}
 			</button>
 			{toggleCreateNewSpace && (
 				<>
 					<input
+						className="createspace__input"
 						type="text"
 						onChange={(e: React.FormEvent<HTMLInputElement>) =>
 							setNewSpace(e.currentTarget.value || "")
 						}
 					/>
 					<button
+						className="createspace__button"
 						onClick={(e: FormEvent) => {
 							e.preventDefault();
 							handleCreate({ name: newSpace });

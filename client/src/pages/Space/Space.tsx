@@ -33,9 +33,9 @@ const Space = () => {
 	}, [isFetching]);
 
 	return (
-		<>
-			<div>
-				<h1>{space.name}</h1>
+		<div className="space">
+			<div className="space__title">
+				<h1 className="space__name">{space.name}</h1>
 			</div>
 			<DaysCounter
 				water={lastWater.slice(-1).toString()}
@@ -46,7 +46,7 @@ const Space = () => {
 			<div className="space__days">
 				{!isFetching && data.map((day) => <SingleDay key={day.id} {...day} />)}
 			</div>
-		</>
+		</div>
 	);
 };
 

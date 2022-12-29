@@ -32,8 +32,10 @@ const Home = () => {
 			<section className="home">
 				<h1 className="home__welcome">Benvingut/da, {user?.name}.</h1>
 				{isFetching && <Spinner />}
-				{!isFetching && spaceArray.map((space: Space) => <SpaceCard key={space.id} {...space} />)}
-				<CreateSpace />
+				<div>
+					{!isFetching && spaceArray.map((space: Space) => <SpaceCard key={space.id} {...space} />)}
+					<CreateSpace />
+				</div>
 			</section>
 		</>
 	);

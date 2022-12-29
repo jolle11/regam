@@ -23,14 +23,20 @@ const DropdownSpaces = () => {
 	};
 
 	return (
-		<div>
-			<button onClick={handleDropdown}>Espais</button>
+		<div className="dropdown">
+			<button className="dropdown__button" onClick={handleDropdown}>
+				Espais
+			</button>
 			{isOpen && (
 				<>
 					<CreateSpace />
-					<ul>
+					<ul className="dropdown__list">
 						{spaceArray.map((space: Space) => (
-							<li key={space.id} onClick={() => handleSpaceSwitch(space)}>
+							<li
+								className="dropdown__item"
+								key={space.id}
+								onClick={() => handleSpaceSwitch(space)}
+							>
 								{space.name}
 							</li>
 						))}

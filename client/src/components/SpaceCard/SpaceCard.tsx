@@ -21,50 +21,62 @@ const SpaceCard = (space: Space) => {
 	const [editableName, setEditableName] = useState<string>("");
 
 	return (
-		<div>
-			<h3>{space.name}</h3>
-			<button
-				onClick={() => {
-					dispatch(setSpace(space));
-					navigate(`/space/${space.name}`);
-				}}
-			>
-				Seleccionar espai
-			</button>
-			<button
-				onClick={() => {
-					setToggleSpaceActions(!toggleSpaceActions);
-					setEditableName("");
-				}}
-			>
-				{toggleSpaceActions ? "Cancellar" : "Editar espai"}
-			</button>
+		<div className="spacecard">
+			<h3 className="spacecard__title">{space.name}</h3>
+			<div className="spacecard__group">
+				<button
+					className="spacecard__button"
+					onClick={() => {
+						dispatch(setSpace(space));
+						navigate(`/space/${space.name}`);
+					}}
+				>
+					Anar
+				</button>
+				<button
+					className="spacecard__button"
+					onClick={() => {
+						setToggleSpaceActions(!toggleSpaceActions);
+						setEditableName("");
+					}}
+				>
+					{toggleSpaceActions ? "Cancellar" : "Editar nom"}
+				</button>
+			</div>
 			{toggleSpaceActions && (
-				<>
+				<div className="spacecard__actions">
 					<input
+						className="spacecard__input"
 						onChange={(e: React.FormEvent<HTMLInputElement>) => {
 							setEditableName(e.currentTarget.value || "");
 							setIsEdited(false);
 						}}
 					/>
-					<button
-						disabled={isEdited}
-						onClick={() => {
-							handleUpdate({ id: space.id, name: editableName });
-							setIsEdited(true);
-						}}
-					>
-						Actualitzar espai
-					</button>
-					<button
-						// TODO: Add two step deletion
-						onClick={() => {
-							handleDelete(space.id);
-						}}
-					>
-						Eliminar espai
-					</button>
-				</>
+					<div className="spacecard__group">
+						<button
+							className="spacecard__button"
+							disabled={isEdited}
+							onClick={() => {
+								if (editableName === "") {
+									return;
+								}
+								handleUpdate({ id: space.id, name: editableName });
+								setIsEdited(true);
+							}}
+						>
+							Actualitzar espai
+						</button>
+						<button
+							className="spacecard__button"
+							// TODO: Add two step deletion
+							onClick={() => {
+								handleDelete(space.id);
+							}}
+						>
+							Eliminar espai
+						</button>
+					</div>
+				</div>
 			)}
 		</div>
 	);

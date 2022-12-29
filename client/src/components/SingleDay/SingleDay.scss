@@ -1,12 +1,22 @@
 .singleday {
 	display: flex;
+	justify-content: center;
+	align-items: center;
 
-	p {
+	&__date {
+		font-size: 20px;
+	}
+
+	&__icon {
 		font-size: 30px;
 
-	}
-}
+		&--greyScale {
+			filter: grayscale(1);
 
-.greyScale {
-	filter: grayscale(1);
+		}
+	}
+
+	&__button {}
+
+	&__textarea {}
 }
