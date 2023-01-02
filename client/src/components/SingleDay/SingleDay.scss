@@ -1,3 +1,5 @@
+@import '../../styles/colors';
+
 .singleday {
 	display: flex;
 	justify-content: center;
@@ -16,7 +18,16 @@
 		}
 	}
 
-	&__button {}
+	&__button {
+		border: none;
+		padding: 10px;
+		border-radius: 10px;
+		background: $darkergreen;
+		color: $lightergreen;
+		display: flex;
+		justify-content: space-evenly;
+		cursor: pointer;
+	}
 
 	&__textarea {}
 }

@@ -3,6 +3,9 @@
 .header {
 	display: flex;
 	justify-content: space-between;
+	min-height: 7vh;
+	align-items: center;
+
 
 	@media (min-width: 320px) {}
 
@@ -13,6 +16,30 @@
 	&__title {
 		font-size: 30px;
 		text-decoration: none;
-		color: $lila;
+		color: $darkergreen;
+		padding: 10px;
+	}
+
+	&__list {
+		display: flex;
+		list-style-type: none;
+		justify-content: center;
+		align-items: center;
+	}
+
+	&__item {
+		padding-right: 10px;
+	}
+
+	&__button {
+		border: none;
+		min-width: 120px;
+		padding: 10px;
+		border-radius: 10px;
+		background: $darkergreen;
+		color: $lightergreen;
+		display: flex;
+		justify-content: space-evenly;
+		cursor: pointer;
 	}
 }
