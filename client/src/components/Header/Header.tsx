@@ -34,14 +34,15 @@ const Header = () => {
 			{!user && (
 				<ul className="header__list">
 					<li className="header__item">
-						<Link to="/login" className="header__button">
+						<button onClick={() => navigate("/login")} className="header__button">
 							<FaSignInAlt /> Inicia sessió
-						</Link>
+						</button>
 					</li>
 					<li className="header__item">
-						<Link to="/register" className="header__button">
-							<FaUser /> Registra't
-						</Link>
+						<button onClick={() => navigate("/register")} className="header__button">
+							<FaUser />
+							Registra't
+						</button>
 					</li>
 				</ul>
 			)}
