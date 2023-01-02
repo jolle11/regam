@@ -2,9 +2,9 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { setSpace } from "../../features/spaces/spaceSlice";
 import { Space } from "../../ts";
 import CreateSpace from "../CreateSpace/CreateSpace";
+import "./DropdownSpaces.scss";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 const DropdownSpaces = () => {
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 	const navigate = useNavigate();
