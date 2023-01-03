@@ -16,15 +16,15 @@ const DaysCounter = ({ water, fertilizer, transplant }: IProps) => {
 	return (
 		<div className="counter">
 			<div className="counter__title">Útim:</div>
-			<div className="counter__subtitle counter__subtitle--rec">Rec</div>
-			<div className="counter__subtitle counter__subtitle--fertilitzant">Fertilitzant</div>
-			<div className="counter__subtitle counter__subtitle--transplant">Transplant</div>
-			<div className="counter__number counter__number--rec">{getLanguageCount(lastWater)}</div>
-			<div className="counter__number counter__number--fertilitzant">
-				{getLanguageCount(lastFertilizer)}
+			<div className="counter__row">
+				<div className="counter__subtitle">Rec</div>
+				<div className="counter__subtitle">Fertilitzant</div>
+				<div className="counter__subtitle">Transplant</div>
 			</div>
-			<div className="counter__number counter__number--transplant">
-				{getLanguageCount(lastTransplant)}
+			<div className="counter__row">
+				<div className="counter__number">{getLanguageCount(lastWater)}</div>
+				<div className="counter__number">{getLanguageCount(lastFertilizer)}</div>
+				<div className="counter__number">{getLanguageCount(lastTransplant)}</div>
 			</div>
 		</div>
 	);
