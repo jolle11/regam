@@ -17,7 +17,7 @@ const CreateSpace = () => {
 					setToggleCreateNewSpace(!toggleCreateNewSpace);
 				}}
 			>
-				{toggleCreateNewSpace ? "Cancellar" : "Nou espai"}
+				{toggleCreateNewSpace ? "Cancel·lar" : "Nou espai"}
 			</button>
 			{toggleCreateNewSpace && (
 				<>
