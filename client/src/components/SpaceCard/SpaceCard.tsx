@@ -40,7 +40,7 @@ const SpaceCard = (space: Space) => {
 						setEditableName("");
 					}}
 				>
-					{toggleSpaceActions ? "Cancellar" : "Editar nom"}
+					{toggleSpaceActions ? "Cancel·lar" : "Editar nom"}
 				</button>
 			</div>
 			{toggleSpaceActions && (
@@ -54,7 +54,7 @@ const SpaceCard = (space: Space) => {
 					/>
 					<div className="spacecard__group">
 						<button
-							className="spacecard__button"
+							className="spacecard__button spacecard__button--update"
 							disabled={isEdited}
 							onClick={() => {
 								if (editableName === "") {
@@ -67,7 +67,7 @@ const SpaceCard = (space: Space) => {
 							Actualitzar espai
 						</button>
 						<button
-							className="spacecard__button"
+							className="spacecard__button spacecard__button--delete"
 							// TODO: Add two step deletion
 							onClick={() => {
 								handleDelete(space.id);
