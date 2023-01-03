@@ -29,7 +29,6 @@ const DropdownSpaces = () => {
 			</button>
 			{isOpen && (
 				<>
-					<CreateSpace />
 					<ul className="dropdown__list">
 						{spaceArray.map((space: Space) => (
 							<li
@@ -40,6 +39,7 @@ const DropdownSpaces = () => {
 								{space.name}
 							</li>
 						))}
+						{/* <CreateSpace /> */}
 					</ul>
 				</>
 			)}
