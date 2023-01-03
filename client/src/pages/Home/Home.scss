@@ -7,4 +7,10 @@
 	&__welcome {
 		font-size: 40px;
 	}
+
+	&__list {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
 }

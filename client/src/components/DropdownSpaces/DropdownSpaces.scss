@@ -1,6 +1,10 @@
 @import '../../styles/colors';
 
 .dropdown {
+	display: flex;
+
+	flex-direction: column;
+
 	&__button {
 		border: none;
 		padding: 10px;
@@ -12,7 +16,16 @@
 		cursor: pointer;
 	}
 
-	&__list {}
+	&__list {
+		list-style-type: none;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		cursor: pointer;
 
-	&__item {}
+	}
+
+	&__item {
+		padding: 5px;
+	}
 }

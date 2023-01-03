@@ -10,12 +10,16 @@
 	min-width: 200px;
 	margin: 10px;
 	border: 2px solid $darkergreen;
+	border-radius: 10px;
 
 	&__title {
 		color: $darkgreen;
 	}
 
-	&__group {}
+	&__group {
+		display: flex;
+		justify-content: space-evenly
+	}
 
 	&__button {
 		border: none;
@@ -26,7 +30,15 @@
 		display: flex;
 		justify-content: space-evenly;
 		cursor: pointer;
+		margin: 5px;
 
+		&--update {
+			background: $lila;
+		}
+
+		&--delete {
+			background: $darkred;
+		}
 	}
 
 	&__actions {
@@ -36,6 +48,8 @@
 
 	&__input {
 		border: none;
-		height: 20px;
+		height: 25px;
+		border-radius: 5px;
+		margin: 5px 0;
 	}
 }
