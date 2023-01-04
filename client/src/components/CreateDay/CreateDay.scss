@@ -33,6 +33,7 @@
 
 	&__button {
 		border: none;
+		margin: 10px;
 		padding: 10px;
 		border-radius: 10px;
 		background: $darkergreen;
@@ -40,5 +41,9 @@
 		display: flex;
 		justify-content: space-evenly;
 		cursor: pointer;
+
+		&:disabled {
+			background: grey;
+		}
 	}
 }

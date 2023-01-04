@@ -5,6 +5,10 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	font-family: 'Josefin Sans', sans-serif;
+	border: 2px solid $darkgreen;
+	padding: 5px 5px 0 5px;
+	border-radius: 10px;
 
 	&__title {
 		text-align: center;
@@ -14,6 +18,8 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		border-top: 2px solid $darkgreen;
+		height: 32px;
 	}
 
 	&__subtitle {

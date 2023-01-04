@@ -1,6 +1,15 @@
 @import '../../styles/colors';
 
 .createspace {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border: 2px solid $darkgreen;
+	padding: 10px;
+	border-radius: 10px;
+	background: $lightgreen;
+
 	&__button {
 		border: none;
 		padding: 10px;
@@ -10,7 +19,16 @@
 		display: flex;
 		justify-content: space-evenly;
 		cursor: pointer;
+
+		&:disabled {
+			background: grey;
+		}
 	}
 
-	&__input {}
+	&__input {
+		margin: 10px;
+		border: 1px solid $darkgreen;
+		border-radius: 10px;
+		height: 30px;
+	}
 }
