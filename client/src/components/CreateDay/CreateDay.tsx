@@ -63,6 +63,7 @@ const CreateDay = () => {
 
 			<button
 				className="createday__button"
+				disabled={water === false && fertilizer === false && transplant === false && comment === ""}
 				onClick={(e: FormEvent) => {
 					e.preventDefault();
 					handleCreate({
