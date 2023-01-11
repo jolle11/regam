@@ -12,11 +12,11 @@ const getLanguageCount = (date: string) => {
 		case "hours":
 			return `Fa ${getPositionElement(date, 0)} hores`;
 		case "month":
-			return `Fa ${getPositionElement(date, 0)} mes`;
+			return "Fa 1 mes";
 		case "months":
 			return `Fa ${getPositionElement(date, 0)} mesos`;
 		case "year":
-			return `Fa ${getPositionElement(date, 0)} any`;
+			return "Fa 1 any";
 		case "years":
 			return `Fa ${getPositionElement(date, 0)} anys`;
 	}
